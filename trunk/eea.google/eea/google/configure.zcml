@@ -1,0 +1,9 @@
+<configure
+  xmlns="http://namespaces.zope.org/zope"
+  i18n_domain="eea.google">
+
+  <include file="profiles.zcml" />
+  <include package=".tool" />
+  <include package=".analytics" />
+
+</configure>

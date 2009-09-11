@@ -1,0 +1,46 @@
+<configure
+  xmlns="http://namespaces.zope.org/zope"
+  xmlns:browser="http://namespaces.zope.org/browser"
+  xmlns:five="http://namespaces.zope.org/five"
+  i18n_domain="eea.google">
+
+  <utility provides=".interfaces.IGoogleAnalyticsConnection"
+    factory=".connection.GoogleAnalyticsConnection" />
+
+  <browser:resource
+    name="google.analytics.gif"
+    image="icon.gif"
+    />
+
+  <browser:resource
+    name="google.analytics.css"
+    file="analytics.css"
+   />
+
+  <five:registerClass
+    class=".content.Analytics"
+    meta_type="Google Analytics"
+    icon="google.analytics.gif"
+    permission="cmf.ModifyPortalContent"
+    />
+
+  <browser:page name="add_analytics.html"
+    for="eea.google.tool.interfaces.IGoogleTool"
+    class=".browser.AnalyticsAddPage"
+    permission="cmf.ModifyPortalContent"
+    />
+
+  <browser:page name="index_html"
+    for=".content.Analytics"
+    class=".browser.AnalyticsViewPage"
+    template="view.pt"
+    permission="cmf.ModifyPortalContent"
+    />
+
+  <browser:page name="register"
+    for=".content.Analytics"
+    class=".browser.AnalyticsRegisterPage"
+    permission="cmf.ModifyPortalContent"
+    />
+
+</configure>

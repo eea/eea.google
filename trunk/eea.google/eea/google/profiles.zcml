@@ -1,0 +1,18 @@
+<configure
+  xmlns="http://namespaces.zope.org/zope"
+  xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+  xmlns:five="http://namespaces.zope.org/five"
+  i18n_domain="eea.google">
+
+  <five:registerPackage package="."/>
+
+  <genericsetup:registerProfile
+    name="default"
+    title="Google Tool"
+    directory="profiles/default"
+    description="Profile for Google Tool"
+    provides="Products.GenericSetup.interfaces.EXTENSION"
+    for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+    />
+
+</configure>
