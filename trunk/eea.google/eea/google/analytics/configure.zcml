@@ -4,12 +4,25 @@
   xmlns:five="http://namespaces.zope.org/five"
   i18n_domain="eea.google">
 
+  <include file="vocabularies.zcml" />
+
   <utility provides=".interfaces.IGoogleAnalyticsConnection"
     factory=".connection.GoogleAnalyticsConnection" />
 
+  <adapter
+    provides="zope.app.container.interfaces.INameChooser"
+    for=".interfaces.IAnalytics"
+    factory=".namechooser.GoogleNameChooser"
+    />
+
   <browser:resource
     name="google.analytics.gif"
-    image="icon.gif"
+    image="analytics.gif"
+    />
+
+  <browser:resource
+    name="google.analytics.report.gif"
+    image="report.gif"
     />
 
   <browser:resource
@@ -24,6 +37,13 @@
     permission="cmf.ModifyPortalContent"
     />
 
+  <five:registerClass
+    class=".content.AnalyticsReport"
+    meta_type="Google Analytics Report"
+    icon="google.analytics.report.gif"
+    permission="cmf.ModifyPortalContent"
+    />
+
   <browser:page name="add_analytics.html"
     for="eea.google.tool.interfaces.IGoogleTool"
     class=".browser.AnalyticsAddPage"
@@ -31,15 +51,40 @@
     />
 
   <browser:page name="index_html"
-    for=".content.Analytics"
+    for=".interfaces.IAnalytics"
     class=".browser.AnalyticsViewPage"
     template="view.pt"
     permission="cmf.ModifyPortalContent"
     />
 
   <browser:page name="register"
-    for=".content.Analytics"
+    for=".interfaces.IAnalytics"
     class=".browser.AnalyticsRegisterPage"
+    permission="cmf.ModifyPortalContent"
+    />
+
+  <browser:page name="remove"
+    for=".interfaces.IAnalytics"
+    class=".browser.AnalyticsView"
+    attribute="remove"
+    permission="cmf.ModifyPortalContent"
+    />
+
+  <browser:page name="add_report"
+    for=".interfaces.IAnalytics"
+    class=".browser.ReportAddPage"
+    permission="cmf.ModifyPortalContent"
+    />
+
+  <browser:page name="edit"
+    for=".interfaces.IAnalyticsReport"
+    class=".browser.ReportEditPage"
+    permission="cmf.ModifyPortalContent"
+    />
+
+  <browser:page name="index_html"
+    for=".interfaces.IAnalyticsReport"
+    class=".browser.ReportViewPage"
     permission="cmf.ModifyPortalContent"
     />
 

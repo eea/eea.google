@@ -1,5 +1,6 @@
 """ Google API
 """
+import urllib
 import urllib2
 import logging
 from exception import GoogleClientError
@@ -57,10 +58,26 @@ class Connection(object):
         self.token = token[1]
         return self.token
 
-    def __call__(self, scope):
+    def connect(self, scope, data=None, method='POST'):
+        """ Safely call. Returns None if any error occurs.
+        """
+        try:
+            return self(scope, data, method)
+        except GoogleClientError:
+            return None
+
+    def __call__(self, scope, data=None, method='POST'):
         """ Connection to google API
         """
-        request = urllib2.Request(self.domain + scope, headers=self.headers)
+        if data:
+            data = urllib.urlencode(data)
+
+        if method != 'POST':
+            scope = '%s?%s' % (scope, data)
+            data = None
+
+        request = urllib2.Request(self.domain + scope,
+                                  data=data, headers=self.headers)
         try:
             response = urllib2.urlopen(request)
         except urllib2.HTTPError, err:

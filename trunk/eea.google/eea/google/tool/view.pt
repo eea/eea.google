@@ -25,11 +25,11 @@
       <tr>
         <th i18n:translate="">Connection</th>
         <th i18n:translate="">Status</th>
-        <th i18n:translate="">Remove</th>
+        <th i18n:translate="">Manage</th>
       </tr>
     </thead>
     <tbody>
-      <tal:ptypes repeat="doc docs">
+      <tal:connection repeat="doc docs">
         <tr tal:define="oddrow repeat/doc/odd"
           tal:attributes="class python:oddrow and 'even' or 'odd'">
           <td>
@@ -52,7 +52,7 @@
               i18n:translate="">Remove</a>
           </td>
         </tr>
-      </tal:ptypes>
+      </tal:connection>
     </tbody>
   </table>
 

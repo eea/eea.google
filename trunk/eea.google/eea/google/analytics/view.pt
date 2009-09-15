@@ -49,6 +49,46 @@
       </dl>
     </div>
 
+    <!-- Reports -->
+    <table class="listing nosort controlpanel-listing" tal:define="
+      docs python:here.objectValues('Google Analytics Report')"
+      tal:condition="docs">
+      <thead>
+      <tr>
+        <th i18n:translate="">Defined reports</th>
+        <th i18n:translate="">Edit</th>
+        <th i18n:translate="">Manage</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tal:account repeat="doc docs">
+        <tr tal:define="oddrow repeat/doc/odd"
+          tal:attributes="class python:oddrow and 'even' or 'odd'">
+          <td>
+            <a tal:attributes="href doc/absolute_url; title doc/title_or_id">
+              <img tal:attributes="src string:$portal_url/${doc/icon};"/>
+              <span tal:content="doc/title_or_id|string:" />
+            </a>
+          </td>
+          <td style="text-align: center">
+            <a title="Edit" tal:attributes="
+              href string:${doc/absolute_url}/edit"
+              i18n:translate="">Edit</a>
+          </td>
+          <td style="text-align: center">
+            <a title="Remove" tal:attributes="
+              href string:${here/absolute_url}/@@remove?id=${doc/getId}"
+              i18n:translate="">Remove</a>
+          </td>
+        </tr>
+      </tal:account>
+    </tbody>
+    </table>
+    <div>
+      <a tal:attributes="href string:add_report" title="Add analytics report"
+        i18n:translate="" i18n:attributes="title">Add analytics report</a>
+    </div>
+
   </div>
 
 </div>
