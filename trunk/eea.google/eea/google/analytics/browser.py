@@ -141,6 +141,8 @@ class ReportViewPage(BrowserView):
         return '\n'.join(res)
 
     def __call__(self, **kwargs):
+        if self.request:
+            kwargs.update(self.request.form)
         scope = '/analytics/feeds/data'
         query = {
             'ids': self.context.table,
@@ -160,7 +162,9 @@ class ReportViewPage(BrowserView):
         conn = utility(self.token)
         response = conn.connect(scope=scope, data=query, method='GET')
 
-        self.request.response.setHeader('content-type', 'text/xml')
+        content_type = kwargs.get('content_type', 'text/xml')
+        if self.request and content_type:
+            self.request.response.setHeader('content-type', content_type)
         if not response:
             return self.error_xml(query)
         return response.read()

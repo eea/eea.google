@@ -5,3 +5,7 @@
 .google-analytics .broken {
   color: red;
 }
+
+.google-analytics .controlpanel-listing {
+  width: 98%;
+}
