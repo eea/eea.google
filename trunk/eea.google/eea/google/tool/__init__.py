@@ -8,5 +8,5 @@ def initialize(context):
 
     ToolInit('eea.google',
              tools = (GoogleTool,),
-             icon = 'tool.gif',
+             icon = 'icon.gif',
     ).initialize(context)
