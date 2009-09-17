@@ -24,4 +24,4 @@ class GoogleToolView(BrowserView):
             return self._redirect('Invalid id: %s' % conn_id)
 
         self.context.manage_delObjects(ids=[conn_id,])
-        self._redirect('Connection deleted')
+        return self._redirect('Connection deleted')

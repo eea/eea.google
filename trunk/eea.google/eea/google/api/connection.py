@@ -58,7 +58,7 @@ class Connection(object):
         self.token = token[1]
         return self.token
 
-    def connect(self, scope, data=None, method='POST'):
+    def request(self, scope, data=None, method='POST'):
         """ Safely call. Returns None if any error occurs.
         """
         try:
@@ -67,7 +67,7 @@ class Connection(object):
             return None
 
     def __call__(self, scope, data=None, method='POST'):
-        """ Connection to google API
+        """ Query Google
         """
         if data:
             data = urllib.urlencode(data)

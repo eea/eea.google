@@ -1,5 +1,5 @@
 from zope.interface import implements
-from eea.google.api.connection import Connection
+from eea.google.api import Connection
 from interfaces import IGoogleAnalyticsConnection
 
 class GoogleAnalyticsConnection(object):

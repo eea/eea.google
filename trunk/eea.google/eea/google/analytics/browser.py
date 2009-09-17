@@ -29,7 +29,7 @@ class AnalyticsView(BrowserView):
         return msg
 
     def remove(self, **kwargs):
-        """ Remove connection
+        """ Remove noe report
         """
         if self.request:
             kwargs.update(self.request.form)
@@ -39,7 +39,7 @@ class AnalyticsView(BrowserView):
             return self._redirect('Invalid id: %s' % doc_id)
 
         self.context.manage_delObjects(ids=[doc_id,])
-        self._redirect('Object deleted')
+        return self._redirect('Object deleted')
 #
 # Add page
 #
@@ -160,7 +160,7 @@ class ReportViewPage(BrowserView):
 
         utility = getUtility(IGoogleAnalyticsConnection)
         conn = utility(self.token)
-        response = conn.connect(scope=scope, data=query, method='GET')
+        response = conn.request(scope=scope, data=query, method='GET')
 
         content_type = kwargs.get('content_type', 'text/xml')
         if self.request and content_type:

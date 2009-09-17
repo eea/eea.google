@@ -15,7 +15,7 @@ class TablesVocabulary(object):
         utility = getUtility(IGoogleAnalyticsConnection)
         conn = utility(context.token)
         scope = '/analytics/feeds/accounts/default'
-        response = conn.connect(scope)
+        response = conn.request(scope)
         if not response:
             return SimpleVocabulary(())
 
