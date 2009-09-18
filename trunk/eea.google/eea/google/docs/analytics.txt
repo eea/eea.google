@@ -2,10 +2,11 @@ eea.google.analytics
 ====================
 This package provides the browser interface to register with Google Analytics
 and defines two storage models: Analytics and AnalyticsReport. Also it provides
-a utility to easily access low level api.Connection.
+a utility to easily access low level api.Connection and another one to parse
+Google response XML.
 
-Utility
--------
+Connection utility
+------------------
 
     >>> from zope.component import getUtility
     >>> from eea.google.analytics.interfaces import IGoogleAnalyticsConnection
@@ -34,6 +35,19 @@ Now you can make multiple calls:
     (200, 'OK')
     >>> google.status
     (200, 'OK')
+
+XML Parser utility
+------------------
+
+    >>> from eea.google.analytics.interfaces import IXMLParser
+    >>> parser = getUtility(IXMLParser)
+    >>> xml = self.loadfile('data/analytics.xml').read()
+    >>> items = parser(xml)
+    >>> dimensions, metrics = items.next()
+    >>> dimensions
+    {u'ga:pagePath': u'/data/ga-downloads/6BTID0682R'}
+    >>> metrics
+    {u'ga:pageviews': u'2'}
 
 Analytics
 ---------
@@ -102,7 +116,7 @@ A storage model to persist custom Google Analytics queries.
 
 Now let's view our report
 
-    >>> report_view = getMultiAdapter((report, request), name=u'index_html')
+    >>> report_view = getMultiAdapter((report, request), name=u'index.xml')
     >>> print report_view()
     <?xml version='1.0' encoding='UTF-8'?>
     ...

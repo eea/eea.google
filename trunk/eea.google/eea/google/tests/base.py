@@ -14,7 +14,7 @@ product_globals = globals()
 # Import PloneTestCase - this registers more products with Zope as a side effect
 from Products.PloneTestCase import PloneTestCase as ptc
 from Products.PloneTestCase.layer import onsetup
-from eea.google.api import Connection, GoogleClientError
+from eea.google.api import Connection
 from eea.google.analytics.interfaces import IGoogleAnalyticsConnection
 #
 # Fake Google
@@ -101,3 +101,24 @@ class GoogleTestCase(ptc.PloneTestCase):
 class GoogleFunctionalTestCase(ptc.FunctionalTestCase, GoogleTestCase):
     """Base class for functional integration tests for the 'Google Tool' product.
     """
+    def loadfile(self, rel_filename, ctype='text/xml', zope=False):
+        """ load a file
+        """
+        home = package_home(product_globals)
+        filename = os.path.sep.join([home, rel_filename])
+        data = open(filename, 'r').read()
+
+        fp = StringIO(data)
+        fp.seek(0)
+
+        if not zope:
+            return fp
+
+        header_filename = rel_filename.split('/')[-1]
+        env = {'REQUEST_METHOD':'PUT'}
+        headers = {'content-type' : ctype,
+                   'content-length': len(data),
+                   'content-disposition':'attachment; filename=%s' % header_filename}
+
+        fs = FieldStorage(fp=fp, environ=env, headers=headers)
+        return FileUpload(fs)

@@ -9,6 +9,9 @@
   <utility provides=".interfaces.IGoogleAnalyticsConnection"
     factory=".connection.GoogleAnalyticsConnection" />
 
+  <utility provides=".interfaces.IXMLParser"
+    factory=".xmlparser.XMLParser" />
+
   <adapter
     provides="zope.app.container.interfaces.INameChooser"
     for=".interfaces.IAnalytics"
@@ -53,7 +56,7 @@
   <browser:page name="index_html"
     for=".interfaces.IAnalytics"
     class=".browser.AnalyticsViewPage"
-    template="view.pt"
+    template="analytics.pt"
     permission="cmf.ModifyPortalContent"
     />
 
@@ -85,6 +88,21 @@
   <browser:page name="index_html"
     for=".interfaces.IAnalyticsReport"
     class=".browser.ReportViewPage"
+    template="report.pt"
+    permission="cmf.ModifyPortalContent"
+    />
+
+  <browser:page name="index.xml"
+    for=".interfaces.IAnalyticsReport"
+    class=".browser.ReportViewPage"
+    attribute="xml"
+    permission="cmf.ModifyPortalContent"
+    />
+
+  <browser:page name="index.table"
+    for=".interfaces.IAnalyticsReport"
+    class=".browser.ReportViewPage"
+    attribute="table"
     permission="cmf.ModifyPortalContent"
     />
 

@@ -79,7 +79,8 @@ Google Analytics (eea.google.analytics)
 =======================================
 This package provides the browser interface to register with Google Analytics
 and defines two storage models: Analytics and AnalyticsReport. Also it provides
-a utility to easily access low level api.Connection
+a utility to easily access low level api.Connection and another one to parse
+Google response XML.
 
 Analytics
 ---------
@@ -94,12 +95,12 @@ filters and sort order. It is actually a query object for Google Analytics API.
 
   >>> from zope.component import getMultiAdapter
   >>> report = tool.analytics.report
-  >>> xml = getMultiAdapter((report, request), 'index_html')
+  >>> xml = getMultiAdapter((report, request), 'index.xml')
 
 Now you have a custom XML report based on defined filters.
 
-Utility
--------
+Connection Utility
+------------------
 Easily access low level eea.google.api.Connection using zope components
 
   >>> from zope.component import getUtility
@@ -107,13 +108,29 @@ Easily access low level eea.google.api.Connection using zope components
   >>> utility = getUtility(IGoogleAnalyticsConnection)
   >>> conn = utility(token='ABCDEFGH__FAH')
 
+XML Parser utility
+------------------
+Parse Google reponse XML
+
+  >>> from zope.component import getUtility
+  >>> from eea.google.analytics.interfaces import IXMLParser
+  >>> parse = getUtility(IXMLParser)
+  >>> table = parse(xml)
+
+Here table is a (dimensions, metrics) python generator
+
+  >>> dimensions, metrics = table.next()
+  >>> dimensions
+  {'ga:pagePath': '/some/doc/path', 'ga:browser': 'Firefox'}
+
+  >>> metrics
+  {'ga:pageviews': u'34235', 'ga:timeOnPage': '2433.0'}
 
 Dependencies
 ============
 
-  1. eea.google.api: python2.4+
-  2. eea.google.tool: Plone 2.5.x or Plone 3.x.
-  3. eea.google.analytics: Plone 2.5.x or Plone 3.x.
+  1. python2.4+
+  2. Plone 2.5.x or Plone 3.x. (optional if you're using only eea.google.api package).
 
 Source code
 ===========

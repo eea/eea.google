@@ -15,11 +15,9 @@
     tal:attributes="href string:${portal_google}"
     i18n:translate="label_up_to_plone_setup">Up to Site Setup</a>
 
-  <p i18n:translate="description-google-analytics">
-    Connect with Google Analytics API.
-  </p>
-
   <div tal:define="token python:context.token" class="google-analytics">
+    <fieldset>
+    <legend i18n:translate="">Connection details</legend>
     <!-- Token not registered -->
     <div tal:condition="not:token" tal:define="
       url string:https://www.google.com/accounts/AuthSubRequest;
@@ -36,7 +34,7 @@
         <dd>
           <span tal:content="token" class="connected">Stored token</span>
           <a tal:attributes="href string:${context/absolute_url}/register?token="
-          i18n:attributes="title" title="Reinitialize token">Remove</a>
+          i18n:attributes="title" title="Remove token">Unregister token</a>
         </dd>
         <tal:status define="
           se python:view.status_error;
@@ -48,14 +46,22 @@
         </tal:status>
       </dl>
     </div>
+    </fieldset>
 
     <!-- Reports -->
+    <fieldset>
+    <legend i18n:translate="">Defined reports</legend>
+    <div>
+      <a tal:attributes="href string:add_report" title="Add analytics report"
+        i18n:translate="" i18n:attributes="title">Add new report</a>
+    </div>
     <table class="listing nosort controlpanel-listing" tal:define="
       docs python:here.objectValues('Google Analytics Report')"
       tal:condition="docs">
       <thead>
       <tr>
-        <th i18n:translate="">Defined reports</th>
+        <th i18n:translate="">Title</th>
+        <th i18n:translate="">View</th>
         <th i18n:translate="">Edit</th>
         <th i18n:translate="">Manage</th>
       </tr>
@@ -72,6 +78,11 @@
           </td>
           <td style="text-align: center">
             <a title="Edit" tal:attributes="
+              href string:${doc/absolute_url}/index.xml"
+              i18n:translate="">XML</a>
+          </td>
+          <td style="text-align: center">
+            <a title="Edit" tal:attributes="
               href string:${doc/absolute_url}/edit"
               i18n:translate="">Edit</a>
           </td>
@@ -84,10 +95,7 @@
       </tal:account>
     </tbody>
     </table>
-    <div>
-      <a tal:attributes="href string:add_report" title="Add analytics report"
-        i18n:translate="" i18n:attributes="title">Add analytics report</a>
-    </div>
+    </fieldset>
 
   </div>
 

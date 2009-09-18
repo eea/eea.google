@@ -12,7 +12,7 @@ from Products.Five import BrowserView
 from Products.statusmessages.interfaces import IStatusMessage
 
 from content import Analytics, AnalyticsReport
-from interfaces import IGoogleAnalyticsConnection, IAnalyticsReport
+from interfaces import IGoogleAnalyticsConnection, IAnalyticsReport, IXMLParser
 
 logger = logging.getLogger('eea.google')
 #
@@ -63,14 +63,20 @@ class AnalyticsRegisterPage(AnalyticsView):
             kwargs.update(self.request.form)
 
         token = kwargs.get('token', '') or ''
+        utility = getUtility(IGoogleAnalyticsConnection)
 
         # Reset tooken
         if not token:
+            conn = utility(self.context.token)
+            response = conn.request(scope='/accounts/AuthSubRevokeToken')
             self.context._token = token
-            return self._redirect('Token removed successfully')
+            if response:
+                return self._redirect('Token unregistered successfully')
+            else:
+                return self._redirect('Token removed, but you have to manually unregister it at '
+                                      'https://www.google.com/accounts/IssuedAuthSubTokens')
 
         # Update token
-        utility = getUtility(IGoogleAnalyticsConnection)
         conn = utility(token)
 
         # Replace single call token with a session one
@@ -140,7 +146,7 @@ class ReportViewPage(BrowserView):
         res.append('</error>')
         return '\n'.join(res)
 
-    def __call__(self, **kwargs):
+    def xml(self, **kwargs):
         if self.request:
             kwargs.update(self.request.form)
         scope = '/analytics/feeds/data'
@@ -168,3 +174,9 @@ class ReportViewPage(BrowserView):
         if not response:
             return self.error_xml(query)
         return response.read()
+
+    def table(self, **kwargs):
+        """ Return a table generator
+        """
+        parser = getUtility(IXMLParser)
+        return parser(self.xml(content_type=None))

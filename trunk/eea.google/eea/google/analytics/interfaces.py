@@ -82,3 +82,20 @@ class IAnalyticsReport(Interface):
 class IGoogleAnalyticsConnection(Interface):
     """ Access google API within analytics scope
     """
+
+class IXMLParser(Interface):
+    """ Parse Google Analytics response XML to a (dimensions, metrics) generator where:
+        dimensions = a dictionary where:
+           key = dimension name
+           value = dimension value
+        metrics = a dictionary where:
+           key = metric name
+           value = metric value
+
+        Example:
+
+        >>> yield (
+        ...    {'ga:pagePath': '/news', 'ga:browser': 'Firefox'},
+        ...    {'ga:pageviews': u'3245', 'ga:newVisits': u'34', 'ga:uniquePageviews',, u'10'}
+        ... )
+    """
