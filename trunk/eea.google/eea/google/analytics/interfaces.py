@@ -23,18 +23,20 @@ class IAnalyticsReport(Interface):
         vocabulary="eea.google.analytics.tables"
     )
 
-    metrics = schema.Choice(
+    metrics = schema.Set(
         title=u'Metrics',
         description=u"The metrics data to be retrieved from the API. A single request is limited to a maximum of 10 metrics.",
-        vocabulary="eea.google.analytics.metrics",
-        required=True
+        required=True,
+        max_length=10,
+        value_type=schema.Choice(vocabulary="eea.google.analytics.metrics")
     )
 
-    dimensions = schema.Choice(
+    dimensions = schema.Set(
         title=u"Dimensions",
         description=u"The dimension data to be retrieved from the API. A single request is limited to a maximum of 7 dimensions.",
-        vocabulary="eea.google.analytics.dimensions",
         required=True,
+        max_length=7,
+        value_type=schema.Choice(vocabulary="eea.google.analytics.dimensions")
     )
 
     start_date = schema.Date(

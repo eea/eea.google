@@ -39,12 +39,12 @@ class DimensionsVocabulary(object):
 
     def __call__(self, context=None):
         dimensions = [
+            # D1. Visitor
             'ga:browser',
             'ga:browserVersion',
             'ga:city',
             'ga:connectionSpeed',
             'ga:continent',
-            'ga:countOfVisits',
             'ga:country',
             'ga:date',
             'ga:day',
@@ -67,9 +67,12 @@ class DimensionsVocabulary(object):
             'ga:screenResolution',
             'ga:subContinent',
             'ga:userDefinedValue',
+            'ga:visitCount',
+            'ga:visitLength',
             'ga:visitorType',
             'ga:week',
             'ga:year',
+            #D2. Campaign
             'ga:adContent',
             'ga:adGroup',
             'ga:adSlot',
@@ -79,24 +82,36 @@ class DimensionsVocabulary(object):
             'ga:medium',
             'ga:referralPath',
             'ga:source',
+            #D3. Content
             'ga:exitPagePath',
             'ga:landingPagePath',
             'ga:pagePath',
             'ga:pageTitle',
+            'ga:secondPagePath',
+            #D4. Ecommerce
             'ga:affiliation',
             'ga:daysToTransaction',
             'ga:productCategory',
             'ga:productName',
             'ga:productSku',
             'ga:transactionId',
+            'ga:visitsToTransaction',
+            #D5. Internal Search
             'ga:searchCategory',
             'ga:searchDestinationPage',
             'ga:searchKeyword',
             'ga:searchKeywordRefinement',
             'ga:searchStartPage',
             'ga:searchUsed',
+            #D6. Navigation
+            'ga:nextPagePath',
+            'ga:previousPagePath',
+            #D7. Events
+            'ga:eventCategory',
+            'ga:eventAction',
+            'ga:eventLabel',
         ]
-        dimensions.sort()
+        dimensions.sort(key=str.lower)
         return SimpleVocabulary([SimpleTerm(x, x, x.replace('ga:', ''))
                                  for x in dimensions])
 
@@ -109,6 +124,7 @@ class MetricsVocabulary(object):
 
     def __call__(self, context=None):
         metrics = [
+            #M1. Visitor
             'ga:bounces',
             'ga:entrances',
             'ga:exits',
@@ -118,26 +134,31 @@ class MetricsVocabulary(object):
             'ga:timeOnSite',
             'ga:visitors',
             'ga:visits',
-            'ga:adClicks',
+            #M2. Campaign
             'ga:adCost',
+            'ga:adClicks',
             'ga:CPC',
             'ga:CPM',
             'ga:CTR',
             'ga:impressions',
+            #M3. Content
             'ga:uniquePageviews',
-            'ga:itemRevenue',
+            #M4. Ecommerce
             'ga:itemQuantity',
+            'ga:itemRevenue',
             'ga:transactionRevenue',
             'ga:transactions',
             'ga:transactionShipping',
             'ga:transactionTax',
             'ga:uniquePurchases',
+            #M5. Internal Search
             'ga:searchDepth',
             'ga:searchDuration',
             'ga:searchExits',
             'ga:searchRefinements',
             'ga:searchUniques',
             'ga:searchVisits',
+            #M6. Goals
             'ga:goal1Completions',
             'ga:goal2Completions',
             'ga:goal3Completions',
@@ -152,9 +173,13 @@ class MetricsVocabulary(object):
             'ga:goal2Value',
             'ga:goal3Value',
             'ga:goal4Value',
-            'ga:goalValueAll',
+            'ga:goalValueAll'
+            #M7. Events
+            'ga:totalEvents',
+            'ga:uniqueEvents',
+            'ga:eventValue',
         ]
-        metrics.sort()
+        metrics.sort(key=str.lower)
         return SimpleVocabulary([SimpleTerm(x, x, x.replace('ga:', ''))
                                  for x in metrics])
 Metrics = MetricsVocabulary()

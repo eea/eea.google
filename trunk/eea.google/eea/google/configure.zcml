@@ -1,9 +1,20 @@
 <configure
   xmlns="http://namespaces.zope.org/zope"
+  xmlns:zcml="http://namespaces.zope.org/zcml"
+  xmlns:cmf="http://namespaces.zope.org/cmf"
   i18n_domain="eea.google">
 
   <include file="profiles.zcml" />
   <include package=".tool" />
   <include package=".analytics" />
+
+  <!-- Plone 3.0+ -->
+  <configure zcml:condition="installed zope.annotation">
+    <cmf:registerDirectory
+      name="skins"
+      directory="skins"
+      recursive="True"
+      />
+  </configure>
 
 </configure>

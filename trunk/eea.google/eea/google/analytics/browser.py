@@ -110,6 +110,10 @@ class AnalyticsViewPage(AnalyticsView):
 class ReportAddPage(AddForm):
     """ Add page
     """
+    def __init__(self, context, request):
+        super(ReportAddPage, self).__init__(context, request)
+        request.debug = False
+
     form_fields = Fields(IAnalyticsReport)
 
     def create(self, data):
@@ -130,6 +134,10 @@ class ReportAddPage(AddForm):
 class ReportEditPage(EditForm):
     """ Edit page
     """
+    def __init__(self, context, request):
+        super(ReportEditPage, self).__init__(context, request)
+        request.debug = False
+
     form_fields = Fields(IAnalyticsReport)
 
 class ReportViewPage(BrowserView):
@@ -150,10 +158,12 @@ class ReportViewPage(BrowserView):
         if self.request:
             kwargs.update(self.request.form)
         scope = '/analytics/feeds/data'
+        dimensions = ','.join(self.context.dimensions)
+        metrics = ','.join(self.context.metrics)
         query = {
             'ids': self.context.table,
-            'dimensions': self.context.dimensions,
-            'metrics': self.context.metrics,
+            'dimensions': dimensions,
+            'metrics': metrics,
             'filters': self.context.filters,
             'sort': self.context.sort,
             'start-date': str(self.context.start_date),
