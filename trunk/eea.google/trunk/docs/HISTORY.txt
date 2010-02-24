@@ -1,6 +1,12 @@
 Changelog
 =========
 
+1.1 (Unreleased)
+----------------
+
+* #2685 Fix layout in edit mode [voineali]
+
+
 1.0 (2009-11-09)
 ----------------
 

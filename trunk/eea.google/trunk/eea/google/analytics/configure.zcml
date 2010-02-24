@@ -79,6 +79,13 @@
     permission="cmf.ModifyPortalContent"
     />
 
+  <adapter
+    for=".browser.ReportEditPage"
+    factory=".browser.edit_named_template_adapter"
+    name="default"
+    provides="zope.formlib.namedtemplate.INamedTemplate"
+    />
+
   <browser:page name="edit"
     for=".interfaces.IAnalyticsReport"
     class=".browser.ReportEditPage"
