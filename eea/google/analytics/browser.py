@@ -5,16 +5,25 @@ import logging
 from zope.component import getUtility
 from zope.formlib.form import Fields, applyChanges
 from plone.app.form.base import EditForm, AddForm
+from plone.app.form._named import named_template_adapter
 from zope.app.container.interfaces import INameChooser
 
 from Acquisition import aq_inner, aq_parent
 from Products.Five import BrowserView
+from Products.Five.browser import pagetemplatefile
 from Products.statusmessages.interfaces import IStatusMessage
 
 from content import Analytics, AnalyticsReport
 from interfaces import IGoogleAnalyticsConnection, IAnalyticsReport, IXMLParser
 
 logger = logging.getLogger('eea.google')
+
+#
+# Named templates
+#
+TEMPLATE = pagetemplatefile.ViewPageTemplateFile('editpageform.pt')
+edit_named_template_adapter = named_template_adapter(TEMPLATE)
+
 #
 # Abstract browser view
 #
