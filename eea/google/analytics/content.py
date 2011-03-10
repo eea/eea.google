@@ -2,8 +2,8 @@ import datetime
 from zope.interface import implements
 from OFS.Folder import Folder
 
-from interfaces import IAnalytics
-from interfaces import IAnalyticsReport
+from eea.google.analytics.interfaces import IAnalytics
+from eea.google.analytics.interfaces import IAnalyticsReport
 
 class Analytics(Folder):
     """ Google Analytics connection

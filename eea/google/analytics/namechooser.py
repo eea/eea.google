@@ -13,17 +13,18 @@ class GoogleNameChooser(NameChooser):
     implements(INameChooser)
 
     def __init__(self, context):
+        NameChooser.__init__(self, context)
         self.context = context
 
-    def checkName(self, name, object):
+    def checkName(self, name, obj):
         return True
 
-    def chooseName(self, name, object):
+    def chooseName(self, name, obj):
         container = self.context
-        name = name or getattr(object, 'title', '')
+        name = name or getattr(obj, 'title', '')
         safe = re.compile(r'[^_A-Za-z0-9\.\-\s]')
         name = safe.sub('', name)
-        name = name or object.__class__.__name__
+        name = name or obj.__class__.__name__
         name = name.strip().lower().replace(' ', '-')
 
         i = 0
@@ -32,5 +33,5 @@ class GoogleNameChooser(NameChooser):
             i += 1
             new_name = "%s-%d" % (name, i)
 
-        self.checkName(new_name, object)
+        self.checkName(new_name, obj)
         return new_name.encode('utf-8')

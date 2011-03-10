@@ -4,7 +4,7 @@ from zope.interface import implements
 from zope.schema.vocabulary import SimpleVocabulary
 from zope.schema.vocabulary import SimpleTerm
 from zope.component import getUtility
-from interfaces import IGoogleAnalyticsConnection
+from eea.google.analytics.interfaces import IGoogleAnalyticsConnection
 
 class TablesVocabulary(object):
     """ Widget position in page

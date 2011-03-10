@@ -1,7 +1,7 @@
 import logging
 from xml.dom import minidom
 from zope.interface import implements
-from interfaces import IXMLParser
+from eea.google.analytics.interfaces import IXMLParser
 
 logger = logging.getLogger('eea.google.analytics')
 

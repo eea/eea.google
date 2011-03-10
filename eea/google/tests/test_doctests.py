@@ -3,7 +3,7 @@
 import unittest
 from zope.testing import doctest
 from Testing.ZopeTestCase import FunctionalDocFileSuite as Suite
-from base import GoogleFunctionalTestCase
+from eea.google.tests.base import GoogleFunctionalTestCase
 
 OPTIONFLAGS = (doctest.REPORT_ONLY_FIRST_FAILURE |
                doctest.ELLIPSIS |

@@ -1,5 +1,5 @@
 from zope.interface import implements
-from interfaces import IGoogleTool
+from eea.google.analytics.interfaces import IGoogleTool
 from OFS.Folder import Folder
 
 class GoogleTool(Folder):

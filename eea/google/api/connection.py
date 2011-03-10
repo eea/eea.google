@@ -3,7 +3,7 @@
 import urllib
 import urllib2
 import logging
-from exception import GoogleClientError
+from eea.google.api.exception import GoogleClientError
 logger = logging.getLogger('eea.google.api')
 
 class Connection(object):
