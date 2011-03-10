@@ -3,6 +3,8 @@ Changelog
 
 1.3-dev - (unreleased)
 ----------------
+ * Clean-up: of pyflakes compiler warnings [ichimdav #4141]
+ * Clean-up: of pylint violations [ichimdav #4140]
 
 1.2 (2010-02-24)
 ----------------

@@ -38,7 +38,7 @@ class GoogleFakeConnection(Connection):
         self.token = 'GOOD_TOKEN'
         return self.token
 
-    def __call__(self, scope, data, method='GET'):
+    def __call__(self, scope, data=None, method='GET'):
         data = urllib.urlencode(data)
         return StringIO('''<?xml version='1.0' encoding='UTF-8'?>
 <feed xmlns='http://www.w3.org/2005/Atom'

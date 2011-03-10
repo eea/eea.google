@@ -13,8 +13,8 @@ from Products.Five import BrowserView
 from Products.Five.browser import pagetemplatefile
 from Products.statusmessages.interfaces import IStatusMessage
 
-from content import Analytics, AnalyticsReport
-from interfaces import IGoogleAnalyticsConnection, IAnalyticsReport, IXMLParser
+from eea.google.analytics.content import Analytics, AnalyticsReport
+from eea.google.analytics.interfaces import IGoogleAnalyticsConnection, IAnalyticsReport, IXMLParser
 
 logger = logging.getLogger('eea.google')
 
@@ -153,7 +153,8 @@ class ReportViewPage(BrowserView):
     """ Index xml
     """
     def __init__(self, context, request):
-        super(BrowserView, self).__init__(context, request)
+        BrowserView.__init__(self, context, request)
+       #super(BrowserView, self).__init__(context, request)
         self.token = aq_parent(aq_inner(self.context)).token
 
     def error_xml(self, query):
