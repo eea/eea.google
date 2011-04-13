@@ -7,8 +7,8 @@ name = 'eea.google'
 path = name.split('.') + ['version.txt']
 version = open(os.path.join(*path)).read().strip()
 
-setup(name=NAME,
-      version=VERSION,
+setup(name=name,
+      version=version,
       description="Access to Google API.",
       long_description=open("README.txt").read() + "\n" +
                        open(os.path.join("docs", "HISTORY.txt")).read(),
