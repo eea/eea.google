@@ -1,3 +1,5 @@
+""" xmlparser module """
+
 import logging
 from xml.dom import minidom
 from zope.interface import implements

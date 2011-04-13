@@ -23,6 +23,8 @@ class GoogleFakeConnection(Connection):
     """ Fake Google Connection """
     @property
     def status(self):
+        """ Session status
+        """
         if self.token == 'SINGLE_SESSION_TOKEN':
             self.token = 'EXPIRED_TOKEN'
             return 200, 'OK'
@@ -33,6 +35,8 @@ class GoogleFakeConnection(Connection):
         return 403, 'GoogleError: HTTP Error 403: Invalid AuthSub token.'
 
     def token2session(self):
+        """ Token status
+        """
         if self.token != 'SINGLE_SESSION_TOKEN':
             return None
         self.token = 'GOOD_TOKEN'
@@ -99,7 +103,8 @@ class GoogleTestCase(ptc.PloneTestCase):
     """
 
 class GoogleFunctionalTestCase(ptc.FunctionalTestCase, GoogleTestCase):
-    """Base class for functional integration tests for the 'Google Tool' product.
+    """Base class for functional integration tests for
+       the 'Google Tool' product.
     """
     def loadfile(self, rel_filename, ctype='text/xml', zope=False):
         """ load a file
@@ -116,9 +121,10 @@ class GoogleFunctionalTestCase(ptc.FunctionalTestCase, GoogleTestCase):
 
         header_filename = rel_filename.split('/')[-1]
         env = {'REQUEST_METHOD':'PUT'}
-        headers = {'content-type' : ctype,
-                   'content-length': len(data),
-                   'content-disposition':'attachment; filename=%s' % header_filename}
+        headers = {
+            'content-type' : ctype,
+            'content-length': len(data),
+            'content-disposition':'attachment; filename=%s' % header_filename}
 
         fs = FieldStorage(fp=fp, environ=env, headers=headers)
         return FileUpload(fs)

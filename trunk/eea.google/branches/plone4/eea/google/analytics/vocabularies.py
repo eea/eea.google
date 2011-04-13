@@ -1,3 +1,5 @@
+""" vocabularies module """
+
 from xml.dom import minidom
 from zope.app.schema.vocabulary import IVocabularyFactory
 from zope.interface import implements

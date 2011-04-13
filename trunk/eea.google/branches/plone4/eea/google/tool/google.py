@@ -1,3 +1,5 @@
+""" google module """
+
 from zope.interface import implements
 from eea.google.tool.interfaces import IGoogleTool
 from OFS.Folder import Folder

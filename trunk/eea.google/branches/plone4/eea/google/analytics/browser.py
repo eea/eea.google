@@ -14,7 +14,11 @@ from Products.Five.browser import pagetemplatefile
 from Products.statusmessages.interfaces import IStatusMessage
 
 from eea.google.analytics.content import Analytics, AnalyticsReport
-from eea.google.analytics.interfaces import IGoogleAnalyticsConnection, IAnalyticsReport, IXMLParser
+from eea.google.analytics.interfaces import (
+    IGoogleAnalyticsConnection,
+    IAnalyticsReport,
+    IXMLParser
+)
 
 logger = logging.getLogger('eea.google')
 
@@ -31,6 +35,8 @@ class AnalyticsView(BrowserView):
     """ Define common methods
     """
     def _redirect(self, msg):
+        """ Set status message and redirect back to context
+        """
         if self.request:
             url = self.context.absolute_url()
             IStatusMessage(self.request).addStatusMessage(msg, type='info')
@@ -47,7 +53,7 @@ class AnalyticsView(BrowserView):
         if not doc_id or doc_id not in self.context.objectIds():
             return self._redirect('Invalid id: %s' % doc_id)
 
-        self.context.manage_delObjects(ids=[doc_id,])
+        self.context.manage_delObjects(ids=[doc_id, ])
         return self._redirect('Object deleted')
 #
 # Add page
@@ -82,8 +88,9 @@ class AnalyticsRegisterPage(AnalyticsView):
             if response:
                 return self._redirect('Token unregistered successfully')
             else:
-                return self._redirect('Token removed, but you have to manually unregister it at '
-                                      'https://www.google.com/accounts/IssuedAuthSubTokens')
+                return self._redirect(
+                    'Token removed, but you have to manually unregister it at '
+                    'https://www.google.com/accounts/IssuedAuthSubTokens')
 
         # Update token
         conn = utility(token)
@@ -91,8 +98,9 @@ class AnalyticsRegisterPage(AnalyticsView):
         # Replace single call token with a session one
         token = conn.token2session()
         if not token:
-            return self._redirect(("An error occured during registration process. "
-                                   "Please check the log file"))
+            return self._redirect((
+                "An error occured during registration process. "
+                "Please check the log file"))
         self.context._token = token
         return self._redirect('Successfully registered with Google.')
 
@@ -101,6 +109,8 @@ class AnalyticsViewPage(AnalyticsView):
     """
     @property
     def status_error(self):
+        """ Status error
+        """
         if not self.context.token:
             return {
                 'status': 404,
@@ -126,18 +136,25 @@ class ReportAddPage(AddForm):
     form_fields = Fields(IAnalyticsReport)
 
     def create(self, data):
-        name = INameChooser(self.context).chooseName(data.get('title', ''), None)
+        """ Create
+        """
+        name = INameChooser(self.context).chooseName(data.get('title', ''),
+                                                     None)
         ob = AnalyticsReport(id=name)
         applyChanges(ob, self.form_fields, data)
         return ob
 
     def add(self, obj):
+        """ Add
+        """
         name = obj.getId()
         self.context[name] = obj
         self._finished_add = True
         return obj
 
     def nextURL(self):
+        """ Next URL
+        """
         return "."
 
 class ReportEditPage(EditForm):
@@ -158,6 +175,8 @@ class ReportViewPage(BrowserView):
         self.token = aq_parent(aq_inner(self.context)).token
 
     def error_xml(self, query):
+        """ Error in XML format
+        """
         res = ['<?xml version="1.0" ?>']
         res.append('<error>')
         res.append('<query><![CDATA[%s]]></query>' % query)
@@ -165,6 +184,8 @@ class ReportViewPage(BrowserView):
         return '\n'.join(res)
 
     def xml(self, **kwargs):
+        """ XML
+        """
         if self.request:
             kwargs.update(self.request.form)
         scope = '/analytics/feeds/data'
