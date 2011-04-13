@@ -5,7 +5,7 @@
             appId="eea.google.tool"
             category="Products"
             condition_expr=""
-            icon_expr=""
+            icon_expr="string:$portal_url/++resource++google.tool.gif"
             url_expr="string:${portal_url}/portal_google"
             visible="True">
   <permission>Manage portal</permission>
