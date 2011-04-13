@@ -1,12 +1,11 @@
 """ EEA Google Installer
 """
-from setuptools import setup, find_packages
 import os
-from os.path import join
+from setuptools import setup, find_packages
 
-NAME = 'eea.google'
-PATH = NAME.split('.') + ['version.txt']
-VERSION = open(join(*PATH)).read().strip()
+name = 'eea.google'
+path = name.split('.') + ['version.txt']
+version = open(os.path.join(*path)).read().strip()
 
 setup(name=NAME,
       version=VERSION,
@@ -14,21 +13,22 @@ setup(name=NAME,
       long_description=open("README.txt").read() + "\n" +
                        open(os.path.join("docs", "HISTORY.txt")).read(),
       classifiers=[
+        "Framework :: Plone",
         "Programming Language :: Python",
         "Topic :: Software Development :: Libraries :: Python Modules",
         ],
-      keywords='google api plone zope python',
-      author='Alin Voinea',
-      author_email='alin@eaudeweb.ro',
-      url='',
+      keywords='EEA google api plone zope python',
+      author='Alin Voinea (eaudeweb), European Environment Agency',
+      author_email='webadmin@eea.europa.eu',
+      url="https://svn.eionet.europa.eu/projects/"
+          "Zope/browser/trunk/eea.google",
       license='GPL',
-      packages=find_packages(exclude=['ez_setup']),
+      packages=find_packages(exclude=['ez_setup', 'tests']),
       namespace_packages=['eea'],
       include_package_data=True,
       zip_safe=False,
       install_requires=[
           'setuptools',
-          # -*- Extra requirements: -*-
       ],
       entry_points="""
       # -*- Entry points: -*-
