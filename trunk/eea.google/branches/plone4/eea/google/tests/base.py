@@ -12,7 +12,7 @@ from Products.Five import fiveconfigure
 product_globals = globals()
 
 # Import PloneTestCase - this registers more products with Zope as a side effect
-from Products.PloneTestCase import PloneTestCase as ptc
+from Products.PloneTestCase import PloneTestCase
 from Products.PloneTestCase.layer import onsetup
 from eea.google.api import Connection
 from eea.google.analytics.interfaces import IGoogleAnalyticsConnection
@@ -93,16 +93,17 @@ def setup_eea_google():
 
     from zope.component import provideUtility
     provideUtility(GoogleFakeAnalyticsConnection(), IGoogleAnalyticsConnection)
-    ptc.installProduct('Five')
+    PloneTestCase.installProduct('Five')
 
 setup_eea_google()
-ptc.setupPloneSite(extension_profiles=('eea.google:default',))
+PloneTestCase.setupPloneSite(extension_profiles=('eea.google:default',))
 
-class GoogleTestCase(ptc.PloneTestCase):
+class GoogleTestCase(PloneTestCase.PloneTestCase):
     """Base class for integration tests for the 'Google Tool' product.
     """
 
-class GoogleFunctionalTestCase(ptc.FunctionalTestCase, GoogleTestCase):
+class GoogleFunctionalTestCase(PloneTestCase.FunctionalTestCase,
+                               GoogleTestCase):
     """Base class for functional integration tests for
        the 'Google Tool' product.
     """

@@ -2,7 +2,7 @@
   xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
   lang="en"
   metal:use-macro="here/prefs_main_template/macros/master"
-  i18n:domain="eea.google">
+  i18n:domain="eea">
 
 <body>
 <div metal:fill-slot="prefs_configlet_main">
