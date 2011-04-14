@@ -9,14 +9,9 @@ from App.Common import package_home
 from cgi import FieldStorage
 from ZPublisher.HTTPRequest import FileUpload
 from Zope2.App.zcml import load_config
+from Products.Five import fiveconfigure as metaconfigure
 
 product_globals = globals()
-
-try:
-    from OFS import metaconfigure
-except ImportError:
-    # Zope <= 2.12
-    from Products.Five import fiveconfigure as metaconfigure
 
 # Import PloneTestCase - this registers more products with Zope as a side effect
 from Products.PloneTestCase import PloneTestCase
