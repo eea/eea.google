@@ -2,14 +2,21 @@
 """
 import os
 import urllib
+import eea.google
 from zope.interface import implements
 from StringIO import StringIO
-from Globals import package_home
+from App.Common import package_home
 from cgi import FieldStorage
 from ZPublisher.HTTPRequest import FileUpload
-from Products.Five import zcml
-from Products.Five import fiveconfigure
+from Zope2.App.zcml import load_config
+
 product_globals = globals()
+
+try:
+    from OFS import metaconfigure
+except ImportError:
+    # Zope <= 2.12
+    from Products.Five import fiveconfigure as metaconfigure
 
 # Import PloneTestCase - this registers more products with Zope as a side effect
 from Products.PloneTestCase import PloneTestCase
@@ -83,17 +90,12 @@ def setup_eea_google():
     The @onsetup decorator causes the execution of this body to be deferred
     until the setup of the Plone site testing layer.
     """
-    fiveconfigure.debug_mode = True
-    import Products.Five
-    zcml.load_config('meta.zcml', Products.Five)
-
-    import eea.google
-    zcml.load_config('configure.zcml', eea.google)
-    fiveconfigure.debug_mode = False
+    metaconfigure.debug_mode = True
+    load_config('configure.zcml', eea.google)
+    metaconfigure.debug_mode = False
 
     from zope.component import provideUtility
     provideUtility(GoogleFakeAnalyticsConnection(), IGoogleAnalyticsConnection)
-    PloneTestCase.installProduct('Five')
 
 setup_eea_google()
 PloneTestCase.setupPloneSite(extension_profiles=('eea.google:default',))
