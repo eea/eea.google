@@ -1,20 +1,22 @@
 Changelog
 =========
+[Alin Voinea - alin.voinea@eaudeweb.ro]
+[Antonio De Marinis - Antonio.DeMarinis@eea.europa.eu]
 
 4.0-dev - (unreleased)
 ----------------------
+ * Feature: Plone 4.0.4 compatible release [ghicaale #4212]
  * Clean-up: of pyflakes compiler warnings [ichimdav #4141]
  * Clean-up: of pylint violations [ichimdav #4140]
 
 1.2 (2010-02-24)
 ----------------
-* Fixed stinky egg. [ghicale]
+ * Bug fix: Fixed stinky egg. [ghicale]
 
 1.1 (2010-02-24)
 ----------------
-* #2685 Fix layout in edit mode [voineali]
-
+ * Bug fix: Fixed layout in edit mode [voineali #2685]
 
 1.0 (2009-11-09)
 ----------------
-* Initial release
+ * Initial release [voineali]
