@@ -4,10 +4,9 @@
 
   <genericsetup:registerProfile
       name="default"
-      title="eea.google"
+      title="EEA Google"
       directory="profiles/default"
-      description="Extension profile for eea.google"
-      provides="Products.GenericSetup.interfaces.EXTENSION"
-      />
+      description="Extension profile for EEA Google"
+      provides="Products.GenericSetup.interfaces.EXTENSION" />
 
 </configure>
