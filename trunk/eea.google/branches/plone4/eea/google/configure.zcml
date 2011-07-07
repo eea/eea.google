@@ -6,4 +6,6 @@
   <include package=".tool" />
   <include package=".analytics" />
 
+  <include package=".upgrades" />
+
 </configure>
