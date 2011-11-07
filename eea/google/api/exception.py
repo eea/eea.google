@@ -1,3 +1,5 @@
+""" exception module """
+
 class GoogleClientError(Exception):
     """ General Google error (error accessing Google API)
     """

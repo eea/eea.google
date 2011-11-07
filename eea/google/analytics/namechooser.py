@@ -1,3 +1,5 @@
+""" namechooser module """
+
 import re
 from zope.interface import implements
 
@@ -17,9 +19,13 @@ class GoogleNameChooser(NameChooser):
         self.context = context
 
     def checkName(self, name, obj):
+        """ Check name
+        """
         return True
 
     def chooseName(self, name, obj):
+        """ Choose name
+        """
         container = self.context
         name = name or getattr(obj, 'title', '')
         safe = re.compile(r'[^_A-Za-z0-9\.\-\s]')

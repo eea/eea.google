@@ -1,3 +1,5 @@
+""" content module """
+
 import datetime
 from zope.interface import implements
 from OFS.Folder import Folder
@@ -17,6 +19,8 @@ class Analytics(Folder):
 
     @property
     def token(self):
+        """ Return token
+        """
         return self._token
 
 class AnalyticsReport(Folder):

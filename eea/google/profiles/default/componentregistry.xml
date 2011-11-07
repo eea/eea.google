@@ -2,7 +2,7 @@
 <componentregistry>
  <utilities>
   <utility
-     interface="eea.google.tool.interfaces.IGoogleTool"
-     object="portal_google"/>
+   interface="eea.google.tool.interfaces.IGoogleTool"
+   object="portal_google"/>
  </utilities>
 </componentregistry>

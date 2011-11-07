@@ -1,4 +1,5 @@
-# Module
+""" tool package """
+
 from Products.CMFCore.utils import ToolInit
 from eea.google.tool.google import GoogleTool
 

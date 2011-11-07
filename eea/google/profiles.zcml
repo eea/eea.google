@@ -1,34 +1,12 @@
-<configure
-  xmlns="http://namespaces.zope.org/zope"
-  xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
-  xmlns:five="http://namespaces.zope.org/five"
-  xmlns:zcml="http://namespaces.zope.org/zcml"
-  i18n_domain="eea.google">
+<configure xmlns="http://namespaces.zope.org/zope"
+           xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+           i18n_domain="eea">
 
-  <five:registerPackage package="."/>
-
-  <!-- Plone 3.0+ -->
-  <configure zcml:condition="installed zope.annotation">
-    <genericsetup:registerProfile
+  <genericsetup:registerProfile
       name="default"
-      title="Google Tool"
-      directory="profiles/plone3"
-      description="Profile for Google Tool"
-      provides="Products.GenericSetup.interfaces.EXTENSION"
-      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-      />
-  </configure>
-
-  <!-- Plone 2.5 -->
-  <configure zcml:condition="installed zope.app.annotation.tests">
-    <genericsetup:registerProfile
-      name="default"
-      title="Google Tool"
-      directory="profiles/plone25"
-      description="Profile for Google Tool"
-      provides="Products.GenericSetup.interfaces.EXTENSION"
-      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-      />
-  </configure>
+      title="EEA Google"
+      directory="profiles/default"
+      description="Extension profile for EEA Google"
+      provides="Products.GenericSetup.interfaces.EXTENSION" />
 
 </configure>

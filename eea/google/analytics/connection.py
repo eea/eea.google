@@ -1,3 +1,5 @@
+""" connection module """
+
 from zope.interface import implements
 from eea.google.api import Connection
 from eea.google.analytics.interfaces import IGoogleAnalyticsConnection

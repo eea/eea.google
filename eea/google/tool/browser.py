@@ -7,6 +7,8 @@ class GoogleToolView(BrowserView):
     """ Browser view
     """
     def _redirect(self, msg):
+        """ Add status message and redirect back to context
+        """
         if self.request:
             url = self.context.absolute_url()
             IStatusMessage(self.request).addStatusMessage(msg, type='info')
@@ -23,5 +25,5 @@ class GoogleToolView(BrowserView):
         if not conn_id or conn_id not in self.context.objectIds():
             return self._redirect('Invalid id: %s' % conn_id)
 
-        self.context.manage_delObjects(ids=[conn_id,])
+        self.context.manage_delObjects(ids=[conn_id, ])
         return self._redirect('Connection deleted')

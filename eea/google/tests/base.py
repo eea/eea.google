@@ -2,17 +2,19 @@
 """
 import os
 import urllib
+import eea.google
 from zope.interface import implements
 from StringIO import StringIO
-from Globals import package_home
+from App.Common import package_home
 from cgi import FieldStorage
 from ZPublisher.HTTPRequest import FileUpload
-from Products.Five import zcml
-from Products.Five import fiveconfigure
+from Zope2.App.zcml import load_config
+from Products.Five import fiveconfigure as metaconfigure
+
 product_globals = globals()
 
 # Import PloneTestCase - this registers more products with Zope as a side effect
-from Products.PloneTestCase import PloneTestCase as ptc
+from Products.PloneTestCase import PloneTestCase
 from Products.PloneTestCase.layer import onsetup
 from eea.google.api import Connection
 from eea.google.analytics.interfaces import IGoogleAnalyticsConnection
@@ -23,6 +25,8 @@ class GoogleFakeConnection(Connection):
     """ Fake Google Connection """
     @property
     def status(self):
+        """ Session status
+        """
         if self.token == 'SINGLE_SESSION_TOKEN':
             self.token = 'EXPIRED_TOKEN'
             return 200, 'OK'
@@ -33,6 +37,8 @@ class GoogleFakeConnection(Connection):
         return 403, 'GoogleError: HTTP Error 403: Invalid AuthSub token.'
 
     def token2session(self):
+        """ Token status
+        """
         if self.token != 'SINGLE_SESSION_TOKEN':
             return None
         self.token = 'GOOD_TOKEN'
@@ -79,27 +85,24 @@ def setup_eea_google():
     The @onsetup decorator causes the execution of this body to be deferred
     until the setup of the Plone site testing layer.
     """
-    fiveconfigure.debug_mode = True
-    import Products.Five
-    zcml.load_config('meta.zcml', Products.Five)
-
-    import eea.google
-    zcml.load_config('configure.zcml', eea.google)
-    fiveconfigure.debug_mode = False
+    metaconfigure.debug_mode = True
+    load_config('configure.zcml', eea.google)
+    metaconfigure.debug_mode = False
 
     from zope.component import provideUtility
     provideUtility(GoogleFakeAnalyticsConnection(), IGoogleAnalyticsConnection)
-    ptc.installProduct('Five')
 
 setup_eea_google()
-ptc.setupPloneSite(extension_profiles=('eea.google:default',))
+PloneTestCase.setupPloneSite(extension_profiles=('eea.google:default',))
 
-class GoogleTestCase(ptc.PloneTestCase):
+class GoogleTestCase(PloneTestCase.PloneTestCase):
     """Base class for integration tests for the 'Google Tool' product.
     """
 
-class GoogleFunctionalTestCase(ptc.FunctionalTestCase, GoogleTestCase):
-    """Base class for functional integration tests for the 'Google Tool' product.
+class GoogleFunctionalTestCase(PloneTestCase.FunctionalTestCase,
+                               GoogleTestCase):
+    """Base class for functional integration tests for
+       the 'Google Tool' product.
     """
     def loadfile(self, rel_filename, ctype='text/xml', zope=False):
         """ load a file
@@ -116,9 +119,10 @@ class GoogleFunctionalTestCase(ptc.FunctionalTestCase, GoogleTestCase):
 
         header_filename = rel_filename.split('/')[-1]
         env = {'REQUEST_METHOD':'PUT'}
-        headers = {'content-type' : ctype,
-                   'content-length': len(data),
-                   'content-disposition':'attachment; filename=%s' % header_filename}
+        headers = {
+            'content-type' : ctype,
+            'content-length': len(data),
+            'content-disposition':'attachment; filename=%s' % header_filename}
 
         fs = FieldStorage(fp=fp, environ=env, headers=headers)
         return FileUpload(fs)
