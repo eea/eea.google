@@ -1,8 +1,8 @@
 Changelog
 =========
 
-4.0-dev - (unreleased)
-----------------------
+4.0 - (2011-11-07)
+------------------
 
 * Cleanup: of pylint, pyflakes warnings
   [ichimdav #4140, #4141]
@@ -12,6 +12,7 @@ Changelog
 
 * Feature: Plone 4.x compatible release
   [ghicaale #4212]
+
 
 1.2 (2010-02-24)
 ----------------
