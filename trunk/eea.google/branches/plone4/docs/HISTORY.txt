@@ -1,30 +1,29 @@
 Changelog
 =========
 
-
 4.0-dev - (unreleased)
 ----------------------
 
-* Clean-up: of pylint, pyflakes warnings
+* Cleanup: of pylint, pyflakes warnings
   [ichimdav #4140, #4141]
 
-* Feature: Added upgrade steps
+* Feature: added upgrade steps
   [voineali #4392]
 
-* Feature: Plone 4.0.4 compatible release
+* Feature: Plone 4.x compatible release
   [ghicaale #4212]
 
 1.2 (2010-02-24)
 ----------------
 
-* Bug fix: Fixed stinky egg.
+* Bug fix: fixed stinky egg
   [ghicale]
 
 
 1.1 (2010-02-24)
 ----------------
 
-* Bug fix: Fixed layout in edit mode
+* Bug fix: fixed layout in edit mode
   [voineali #2685]
 
 

@@ -3,13 +3,14 @@
 import os
 from setuptools import setup, find_packages
 
-name = 'eea.google'
-path = name.split('.') + ['version.txt']
-version = open(os.path.join(*path)).read().strip()
+NAME = 'eea.google'
+PATH = NAME.split('.') + ['version.txt']
+VERSION = open(os.path.join(*PATH)).read().strip()
 
-setup(name=name,
-      version=version,
-      description="Access to Google API.",
+setup(name=NAME,
+      version=VERSION,
+      description=("This package contains useful tools for talking with "
+                   "Google Analytics"),
       long_description=open("README.txt").read() + "\n" +
                        open(os.path.join("docs", "HISTORY.txt")).read(),
       classifiers=[

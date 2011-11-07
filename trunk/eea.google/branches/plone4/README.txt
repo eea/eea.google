@@ -1,9 +1,14 @@
-eea.google
-==========
+EEA Google product
+==================
+
+This package contains useful tools for talking with Google Analytics.
+
+
+Contents
+========
 
 .. contents::
 
-This package contains useful tools for talking with Google.
 
 Main features
 =============
@@ -15,8 +20,10 @@ Main features
   4. Logic to create custom Google Analytics reports using
      `Google Analytics Data Export API`_.
 
+
 Google API (eea.google.api)
 ===========================
+
 A python package that provides a low level Google Connection and a generic
 connection error GoogleClientError. To use this connection you'll need an
 AuthBase authentication token. You can get one by calling Google like:
@@ -66,8 +73,10 @@ a None object if something works wrong.
 
   >>> google.request(scope, data, method='GET')
 
+
 Google Tool (eea.google.tool)
 =============================
+
 A CMF portal tool that can be retrieved using CMF method getToolByName: This a
 simple container for Google connections. It provides a basic browser interface
 to add and remove connections.
@@ -75,8 +84,10 @@ to add and remove connections.
   >>> from Products.CMFCore.utils import getToolByName
   >>> tool = getToolByName(portal, 'portal_google')
 
+
 Google Analytics (eea.google.analytics)
 =======================================
+
 This package provides the browser interface to register with Google Analytics
 and defines two storage models: Analytics and AnalyticsReport. Also it provides
 a utility to easily access low level api.Connection and another one to parse
@@ -126,20 +137,27 @@ Here table is a (dimensions, metrics) python generator
   >>> metrics
   {'ga:pageviews': u'34235', 'ga:timeOnPage': '2433.0'}
 
+
 Dependencies
 ============
 
   1. python2.4+
   2. Plone 2.5.x or Plone 3.x. (optional if you're using only eea.google.api package).
 
+
 Source code
 ===========
 
-Latest source code in EEA svn:
-   https://svn.eionet.europa.eu/repositories/Zope/trunk/eea.google
+Latest source code (Plone 4 compatible):
+   https://svn.eionet.europa.eu/repositories/Zope/trunk/eea.google/branches/plone4/
+
+Plone 2 and 3 compatible:
+   https://svn.eionet.europa.eu/repositories/Zope/trunk/eea.google/trunk/
+
 
 Copyright and license
 =====================
+
 The Initial Owner of the Original Code is European Environment Agency (EEA).
 All Rights Reserved.
 
@@ -153,6 +171,7 @@ Contributor(s): Alin Voinea (Eau de Web),
                 Antonio De Marinis (European Environment Agency),
 
 More details under docs/License.txt
+
 
 Funding
 =======
