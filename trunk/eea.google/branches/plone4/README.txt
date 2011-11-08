@@ -20,6 +20,9 @@ Main features
   4. Logic to create custom Google Analytics reports using
      `Google Analytics Data Export API`_.
 
+Google Analytics reports created this way can be made available via portlets. Right
+now there is an example under skins folder.
+
 
 Google API (eea.google.api)
 ===========================
