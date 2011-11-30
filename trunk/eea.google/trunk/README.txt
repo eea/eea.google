@@ -152,10 +152,10 @@ Source code
 ===========
 
 Latest source code (Plone 4 compatible):
-   https://svn.eionet.europa.eu/repositories/Zope/trunk/eea.google/branches/plone4/
+   https://svn.eionet.europa.eu/repositories/Zope/trunk/eea.google/trunk
 
 Plone 2 and 3 compatible:
-   https://svn.eionet.europa.eu/repositories/Zope/trunk/eea.google/trunk/
+   https://svn.eionet.europa.eu/repositories/Zope/trunk/eea.google/branches/plone25
 
 
 Copyright and license
