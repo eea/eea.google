@@ -1,8 +1,0 @@
-<?xml version="1.0"?>
-<componentregistry>
- <utilities>
-  <utility
-   interface="eea.google.tool.interfaces.IGoogleTool"
-   object="portal_google"/>
- </utilities>
-</componentregistry>
