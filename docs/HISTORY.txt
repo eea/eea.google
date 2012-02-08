@@ -8,7 +8,7 @@ Changelog
 ------------------
  * No changes
 
-4.0-dev - (2011-11-07)
+4.0 - (2011-11-07)
 ------------------
 * Cleanup: of pylint, pyflakes warnings
   [ichimdav #4140, #4141]
