@@ -3,6 +3,8 @@ Changelog
 
 4.3-dev - (unreleased)
 ----------------------
+* Bug fix: fixed markup of HISTORY.txt file
+  [ciobabog refs #5231]
 
 4.2 - (2012-02-06)
 ------------------
