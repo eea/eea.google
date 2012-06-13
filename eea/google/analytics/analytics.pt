@@ -23,7 +23,7 @@
       url string:https://www.google.com/accounts/AuthSubRequest;
       next string:${context/absolute_url}/register;
       scope string:https://www.google.com/analytics/feeds/;">
-      <a tal:attributes="href string:$url?next=$next&scope=$scope&session=1"
+      <a tal:attributes="href string:$url?next=$next&amp;scope=$scope&amp;session=1"
         i18n:translate="">Register with Google</a>
     </div>
 
@@ -34,7 +34,7 @@
         <dd>
           <span tal:content="token" class="connected">Stored token</span>
           <a tal:attributes="href string:${context/absolute_url}/register?token="
-          i18n:attributes="title" title="Remove token">Unregister token</a>
+             i18n:attributes="title" title="Remove token" i18n:translate="">Unregister token</a>
         </dd>
         <tal:status define="
           se python:view.status_error;
@@ -79,17 +79,17 @@
           <td style="text-align: center">
             <a title="Edit" tal:attributes="
               href string:${doc/absolute_url}/index.xml"
-              i18n:translate="">XML</a>
+              i18n:attributes="title" i18n:translate="">XML</a>
           </td>
           <td style="text-align: center">
             <a title="Edit" tal:attributes="
               href string:${doc/absolute_url}/edit"
-              i18n:translate="">Edit</a>
+              i18n:attributes="title" i18n:translate="">Edit</a>
           </td>
           <td style="text-align: center">
             <a title="Remove" tal:attributes="
               href string:${here/absolute_url}/@@remove?id=${doc/getId}"
-              i18n:translate="">Remove</a>
+              i18n:attributes="title" i18n:translate="">Remove</a>
           </td>
         </tr>
       </tal:account>

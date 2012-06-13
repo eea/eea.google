@@ -16,7 +16,8 @@
 
   <tal:analytics condition="python:not here.objectIds('Google Analytics')">
     <a href="add_analytics.html" title="Add Google Analytics connection"
-      i18n:translate="">Add Google Analytics connection</a>
+       i18n:attributes="title add-google-connection"
+       i18n:translate="add-google-connection">Add Google Analytics connection</a>
   </tal:analytics>
 
   <table class="listing nosort controlpanel-listing" style="width: 98%"
