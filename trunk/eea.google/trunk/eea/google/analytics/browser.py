@@ -188,7 +188,7 @@ class ReportViewPage(BrowserView):
         """
         if self.request:
             kwargs.update(self.request.form)
-        scope = '/analytics/feeds/data'
+        scope = '/analytics/v2.4/data'
         dimensions = ','.join(self.context.dimensions)
         metrics = ','.join(self.context.metrics)
         query = {
