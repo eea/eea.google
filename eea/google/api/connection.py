@@ -11,7 +11,8 @@ class Connection(object):
     """
     def __init__(self, token):
         self.token = token
-        self.domain = 'https://www.google.com'
+        self.authdomain = 'https://www.google.com'
+        self.domain = 'https://www.googleapis.com'
 
     @property
     def headers(self):
@@ -76,7 +77,12 @@ class Connection(object):
             scope = '%s?%s' % (scope, data)
             data = None
 
-        request = urllib2.Request(self.domain + scope,
+        domain = self.domain
+        #fix for AuthSub auth in 2.4 API
+        #should migrate to OAuth 2.0
+        if 'AuthSub' in scope:
+            domain = self.authdomain
+        request = urllib2.Request(domain + scope,
                                   data=data, headers=self.headers)
         try:
             response = urllib2.urlopen(request)

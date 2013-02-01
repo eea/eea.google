@@ -16,7 +16,8 @@ class TablesVocabulary(object):
     def __call__(self, context):
         utility = getUtility(IGoogleAnalyticsConnection)
         conn = utility(context.token)
-        scope = '/analytics/feeds/accounts/default'
+        scope = ('/analytics/v2.4/management/accounts/'
+                 '~all/webproperties/~all/profiles')
         response = conn.request(scope)
         if not response:
             return SimpleVocabulary(())
@@ -26,11 +27,18 @@ class TablesVocabulary(object):
         dom = minidom.parseString(xml)
         accounts = dom.getElementsByTagName('entry')
         for account in accounts:
+            data = {'dxp:tableId': '', 'ga:profileName': '',
+                    'ga:webPropertyId': ''}
             for prop in account.childNodes:
-                if prop.nodeName != 'dxp:tableId':
+                if prop.nodeName != 'dxp:property':
                     continue
-                key = prop.childNodes[0].data
-                tables.append(SimpleTerm(key, key, key.replace('ga:', '')))
+                propname = prop.attributes.get('name').value
+                propval = prop.attributes.get('value').value
+                data[propname] = propval
+            term_key = data['dxp:tableId']
+            term_title = '%s (%s)' % (data['ga:webPropertyId'],
+                                      data['ga:profileName'])
+            tables.append(SimpleTerm(term_key, term_key, term_title))
         return SimpleVocabulary(tables)
 Tables = TablesVocabulary()
 
