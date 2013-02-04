@@ -1,8 +1,8 @@
 Changelog
 =========
 
-4.5-dev - (unreleased)
-----------------------
+4.5 - (2013-02-04)
+------------------
 * Bug Fix: Fixed to work with the 2.4 API
   [batradav refs #9551]
 
