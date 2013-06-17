@@ -1,8 +1,8 @@
 Changelog
 =========
 
-4.6-dev - (unreleased)
-----------------------
+4.6 - (2013-06-17)
+------------------
 * Change: updated link to site setup
   [ghicale]
 
