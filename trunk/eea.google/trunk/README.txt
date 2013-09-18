@@ -1,6 +1,6 @@
-EEA Google product
-==================
-
+==========
+EEA Google
+==========
 This package contains useful tools for talking with Google Analytics.
 
 
