@@ -6,7 +6,7 @@ from zope.component import getUtility
 from zope.formlib.form import Fields, applyChanges
 from plone.app.form.base import EditForm, AddForm
 from plone.app.form._named import named_template_adapter
-from zope.app.container.interfaces import INameChooser
+from zope.container.interfaces import INameChooser
 
 from Acquisition import aq_inner, aq_parent
 from Products.Five import BrowserView
