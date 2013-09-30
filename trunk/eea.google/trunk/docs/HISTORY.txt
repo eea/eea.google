@@ -3,6 +3,9 @@ Changelog
 
 4.7-dev - (unreleased)
 ----------------------
+* Change: updated zope imports with the versions that require minimum Plone 4.1
+  for eea.google
+  [ichimdav refs #15651]
 
 4.6 - (2013-06-17)
 ------------------

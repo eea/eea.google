@@ -12,7 +12,7 @@
     factory=".xmlparser.XMLParser" />
 
   <adapter
-    provides="zope.app.container.interfaces.INameChooser"
+    provides="zope.container.interfaces.INameChooser"
     for=".interfaces.IAnalytics"
     factory=".namechooser.GoogleNameChooser"
     />
