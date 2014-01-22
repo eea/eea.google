@@ -1,6 +1,9 @@
 Changelog
 =========
 
+4.9-dev - (unreleased)
+----------------------
+
 4.8 - (2014-01-22)
 ------------------
 * Feature: adding Sphinx-generated documentation in Page Template format
