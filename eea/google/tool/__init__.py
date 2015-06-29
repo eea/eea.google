@@ -8,6 +8,6 @@ def initialize(context):
     """ initialize function called when used as a zope2 product """
 
     ToolInit('eea.google',
-             tools = (GoogleTool,),
-             icon = 'icon.gif',
+             tools=(GoogleTool,),
+             icon='icon.gif',
     ).initialize(context)

@@ -112,6 +112,7 @@ class IXMLParser(Interface):
 
         >>> yield (
         ...    {'ga:pagePath': '/news', 'ga:browser': 'Firefox'},
-        ...    {'ga:pageviews': u'3245', 'ga:newVisits': u'34', 'ga:uniquePageviews',, u'10'}
+        ...    {'ga:pageviews': u'3245', 'ga:newVisits': u'34',
+        ...     'ga:uniquePageviews',, u'10'}
         ... )
     """
