@@ -85,8 +85,11 @@ class Connection(object):
         request = urllib2.Request(domain + scope,
                                   data=data, headers=self.headers)
         try:
-            response = urllib2.urlopen(request)
+            response = urllib2.urlopen(request, timeout=10)
         except urllib2.HTTPError, err:
+            logger.exception(err)
+            raise GoogleClientError(err)
+        except Exception, err:
             logger.exception(err)
             raise GoogleClientError(err)
         return response
