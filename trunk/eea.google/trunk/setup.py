@@ -30,6 +30,7 @@ setup(name=NAME,
       zip_safe=False,
       install_requires=[
           'setuptools',
+          'eventlet',
       ],
       entry_points="""
       [z3c.autoinclude.plugin]
