@@ -1,6 +1,9 @@
 Changelog
 =========
 
+5.2.dev0 - (unreleased)
+-----------------------
+
 5.1 - (2015-10-05)
 ------------------
 * Bugfix: set socket timeout to prevent hanging out connection on xmlrpc calling using eventlet
