@@ -1,23 +1,25 @@
 """ Base test cases
 """
-import os
 import urllib
-import eea.google
-from zope.interface import implements
 from StringIO import StringIO
-from App.Common import package_home
 from cgi import FieldStorage
+
+import os
+from zope.interface import implements
+
+import eea.google
+from App.Common import package_home
+from Products.Five import fiveconfigure as metaconfigure
 from ZPublisher.HTTPRequest import FileUpload
 from Zope2.App.zcml import load_config
-from Products.Five import fiveconfigure as metaconfigure
-
-product_globals = globals()
-
 # Import PloneTestCase - this registers more products with Zope as a side effect
 from Products.PloneTestCase import PloneTestCase
 from Products.PloneTestCase.layer import onsetup
 from eea.google.api import Connection
 from eea.google.analytics.interfaces import IGoogleAnalyticsConnection
+
+product_globals = globals()
+
 #
 # Fake Google
 #

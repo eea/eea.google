@@ -3,6 +3,8 @@ Changelog
 
 5.2.dev0 - (unreleased)
 -----------------------
+* Bug fix: Fix pylint warnings
+  [ichim-david refs #71940]
 
 5.1 - (2015-10-05)
 ------------------
