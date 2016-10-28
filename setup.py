@@ -11,7 +11,7 @@ setup(name=NAME,
       version=VERSION,
       description=("This package contains useful tools for talking with "
                    "Google Analytics"),
-      long_description=open("README.txt").read() + "\n" +
+      long_description=open("README.rst").read() + "\n" +
                        open(os.path.join("docs", "HISTORY.txt")).read(),
       classifiers=[
         "Framework :: Plone",
