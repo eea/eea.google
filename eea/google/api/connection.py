@@ -1,8 +1,8 @@
 """ Google API
 """
 import urllib
-from eventlet.green import urllib2
 import logging
+from eventlet.green import urllib2
 from eea.google.api.exception import GoogleClientError
 logger = logging.getLogger('eea.google.api')
 

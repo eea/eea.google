@@ -8,15 +8,15 @@ import os
 from zope.interface import implements
 
 import eea.google
+from eea.google.api import Connection
+from eea.google.analytics.interfaces import IGoogleAnalyticsConnection
 from App.Common import package_home
-from Products.Five import fiveconfigure as metaconfigure
-from ZPublisher.HTTPRequest import FileUpload
-from Zope2.App.zcml import load_config
 # Import PloneTestCase - this registers more products with Zope as a side effect
 from Products.PloneTestCase import PloneTestCase
 from Products.PloneTestCase.layer import onsetup
-from eea.google.api import Connection
-from eea.google.analytics.interfaces import IGoogleAnalyticsConnection
+from Products.Five import fiveconfigure as metaconfigure
+from ZPublisher.HTTPRequest import FileUpload
+from Zope2.App.zcml import load_config
 
 product_globals = globals()
 
