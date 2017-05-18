@@ -87,10 +87,9 @@ class AnalyticsRegisterPage(AnalyticsView):
             self.context._token = token
             if response:
                 return self._redirect('Token unregistered successfully')
-            else:
-                return self._redirect(
-                    'Token removed, but you have to manually unregister it at '
-                    'https://www.google.com/accounts/IssuedAuthSubTokens')
+            return self._redirect(
+                'Token removed, but you have to manually unregister it at '
+                'https://www.google.com/accounts/IssuedAuthSubTokens')
 
         # Update token
         conn = utility(token)
