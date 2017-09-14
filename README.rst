@@ -1,6 +1,9 @@
 ==========
 EEA Google
 ==========
+.. image:: http://ci.eionet.europa.eu/job/eea/job/eea.google/job/master/badge/icon
+  :target: http://ci.eionet.europa.eu/job/eea/job/eea.google/job/master/display/redirect
+
 This package contains useful tools for talking with Google Analytics.
 
 
