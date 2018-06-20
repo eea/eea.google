@@ -189,7 +189,7 @@ Funding
 EEA_ - European Enviroment Agency (EU)
 
 
-.. _EEA: http://www.eea.europa.eu/
+.. _EEA: https://www.eea.europa.eu/
 .. _`AuthSub tokens`: http://code.google.com/apis/accounts/docs/AuthSub.html
 .. _`Google Analytics Data Export API`: http://code.google.com/apis/analytics/docs/gdata/gdataReferenceDataFeed.html
 .. _`Google Data Feed Response`: http://code.google.com/apis/analytics/docs/gdata/gdataReferenceDataFeed.html#dataResponse
