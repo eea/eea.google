@@ -1,6 +1,9 @@
 Changelog
 =========
 
+5.9-dev0 - (unreleased)
+---------------------
+
 5.8 - (2019-01-28)
 -----------------------
 * Jenkins: Add sonarqube step
@@ -118,4 +121,3 @@ Changelog
 ----------------
 * Initial release
   [voineali]
-
