@@ -1,8 +1,12 @@
 ==========
 EEA Google
 ==========
-.. image:: http://ci.eionet.europa.eu/job/eea/job/eea.google/job/master/badge/icon
-  :target: http://ci.eionet.europa.eu/job/eea/job/eea.google/job/master/display/redirect
+.. image:: https://ci.eionet.europa.eu/buildStatus/icon?job=eea/eea.google/develop
+  :target: https://ci.eionet.europa.eu/job/eea/job/eea.google/job/develop/display/redirect
+  :alt: develop
+.. image:: https://ci.eionet.europa.eu/buildStatus/icon?job=eea/eea.google/master
+  :target: https://ci.eionet.europa.eu/job/eea/job/eea.google/job/master/display/redirect
+  :alt: master
 
 This package contains useful tools for talking with Google Analytics.
 
@@ -155,10 +159,10 @@ Source code
 ===========
 
 Latest source code (Plone 4 compatible):
-   https://svn.eionet.europa.eu/repositories/Zope/trunk/eea.google/trunk
+   https://github.com/eea/eea.google
 
 Plone 2 and 3 compatible:
-   https://svn.eionet.europa.eu/repositories/Zope/trunk/eea.google/branches/plone25
+   https://github.com/eea/eea.google/tree/plone25
 
 
 Copyright and license
@@ -185,7 +189,7 @@ Funding
 EEA_ - European Enviroment Agency (EU)
 
 
-.. _EEA: http://www.eea.europa.eu/
+.. _EEA: https://www.eea.europa.eu/
 .. _`AuthSub tokens`: http://code.google.com/apis/accounts/docs/AuthSub.html
 .. _`Google Analytics Data Export API`: http://code.google.com/apis/analytics/docs/gdata/gdataReferenceDataFeed.html
 .. _`Google Data Feed Response`: http://code.google.com/apis/analytics/docs/gdata/gdataReferenceDataFeed.html#dataResponse
